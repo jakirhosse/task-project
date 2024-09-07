@@ -55,6 +55,7 @@ const Login = () => {
           "Failed to send password reset email. Please check your email and try again."
         );
       });
+    navigate("/");
   };
 
   return (
