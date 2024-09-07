@@ -103,7 +103,7 @@ const CheckOutPage = () => {
                 <span className="font-bold text-gray-800">€{total}</span>
               </div>
 
-              {/* Checkout Button */}
+              {/* Checkout Button k */}
               <button className="mt-4 w-full px-4 py-2 bg-black text-white font-semibold rounded-md hover:bg-gray-900">
                 GO TO CHECKOUT
               </button>
