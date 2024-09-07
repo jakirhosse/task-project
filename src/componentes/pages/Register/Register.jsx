@@ -1,9 +1,10 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../provider/AuthProvider";
 import { FaApple, FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa"; // Import both eye icons
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // import GoogleSignUp from "../GoogleSignUp/GoogleSignUp";
 import "./Register.css";
+import Swal from "sweetalert2";
 
 const Register = () => {
   const { createUser } = useContext(AuthContext);
@@ -11,7 +12,7 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
-
+  const navigate = useNavigate("/");
   const handleRegister = async (e) => {
     e.preventDefault();
     setError(null);
@@ -21,6 +22,14 @@ const Register = () => {
     } catch (err) {
       setError(err.message);
     }
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "Your loggin is sucessfully",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+    navigate("/");
   };
 
   return (
@@ -113,7 +122,7 @@ const Register = () => {
       </div>
 
       {/* Right Side: Image */}
-      <div className="ml-40 singup_bg flex flex-col items-center justify-center px-20">
+      <div className="singup_bg flex flex-col items-center justify-center  px-5 md:px-20">
         <img
           src="../../../../src/assets/icon.png"
           alt="icon"

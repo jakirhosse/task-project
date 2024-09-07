@@ -1,16 +1,19 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../provider/AuthProvider";
 import { FaApple } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaRegEyeSlash } from "react-icons/fa6";
 import GoogleSignUp from "../GoogleSignUp/GoogleSignUp";
+import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import "./Login.css";
+import Swal from "sweetalert2";
 const Login = () => {
   const { signIn } = useContext(AuthContext); // Use your signIn method from AuthProvider
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
   const handleLogin = async (e) => {
     e.preventDefault();
     setError(null);
@@ -27,6 +30,31 @@ const Login = () => {
         setError("An unexpected error occurred. Please try again later.");
       }
     }
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "Your loggin is sucessfully",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+    navigate("/");
+  };
+
+  const handleForgotPassword = () => {
+    const auth = getAuth();
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        Swal.fire(
+          "Sent!",
+          "Password reset link has been sent to your email.",
+          "success"
+        );
+      })
+      .catch((error) => {
+        setError(
+          "Failed to send password reset email. Please check your email and try again."
+        );
+      });
   };
 
   return (
@@ -62,6 +90,12 @@ const Login = () => {
               )}
             </p>
           </div>
+          <button
+            onClick={handleForgotPassword}
+            className="text-blue-500 hover:underline mx-auto"
+          >
+            Forgot password?
+          </button>
 
           <button
             type="submit"

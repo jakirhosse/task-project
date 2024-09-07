@@ -17,15 +17,17 @@ const CheckOutPage = () => {
   return (
     <div className="container mx-auto mt-8">
       {/* Checkout Header */}
-      <h1 className="text-3xl font-bold mb-6">Checkout</h1>
+      <h1 className="text-3xl font-bold mb-6 text-center md:text-left">
+        Checkout
+      </h1>
 
       {/* If cart is empty */}
       {cart.items.length === 0 ? (
-        <p>Your cart is empty</p>
+        <p className="text-center pb-10">Your cart is empty</p>
       ) : (
-        <div className="grid grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-5 md:px-0">
           {/* Cart Items Section */}
-          <div>
+          <div className="md:col-span-1">
             {cart.items.map((item) => (
               <div
                 key={item.id}
@@ -69,41 +71,43 @@ const CheckOutPage = () => {
           </div>
 
           {/* Order Summary Section */}
-          <div className="p-6 bg-gray-50 rounded-md shadow-md max-w-sm">
-            {/* Order Details Title */}
-            <h2 className="text-lg font-bold mb-4">Order Summary</h2>
+          <div className="md:col-span-1">
+            <div className="p-6 bg-gray-50 rounded-md shadow-md max-w-sm">
+              {/* Order Details Title */}
+              <h2 className="text-lg font-bold mb-4">Order Summary</h2>
 
-            {/* Subtotal */}
-            <div className="mb-2 flex justify-between">
-              <span className="text-gray-600">Subtotal</span>
-              <span className="font-semibold text-gray-800">€{total}</span>
+              {/* Subtotal */}
+              <div className="mb-2 flex justify-between">
+                <span className="text-gray-600">Subtotal</span>
+                <span className="font-semibold text-gray-800">€{total}</span>
+              </div>
+
+              {/* Shipping */}
+              <div className="mb-2 flex justify-between">
+                <span className="text-gray-600">Shipping</span>
+                <span className="font-semibold text-gray-800">Free</span>
+              </div>
+
+              {/* Estimated Tax */}
+              <div className="mb-2 flex justify-between">
+                <span className="text-gray-600 flex items-center">
+                  Estimated Tax{" "}
+                  <span className="ml-1 text-gray-400 cursor-pointer">ⓘ</span>
+                </span>
+                <span className="font-semibold text-gray-800">€-</span>
+              </div>
+
+              {/* Total */}
+              <div className="border-t pt-2 mt-2 flex justify-between">
+                <span className="font-bold text-gray-800">Total</span>
+                <span className="font-bold text-gray-800">€{total}</span>
+              </div>
+
+              {/* Checkout Button */}
+              <button className="mt-4 w-full px-4 py-2 bg-black text-white font-semibold rounded-md hover:bg-gray-900">
+                GO TO CHECKOUT
+              </button>
             </div>
-
-            {/* Shipping */}
-            <div className="mb-2 flex justify-between">
-              <span className="text-gray-600">Shipping</span>
-              <span className="font-semibold text-gray-800">Free</span>
-            </div>
-
-            {/* Estimated Tax */}
-            <div className="mb-2 flex justify-between">
-              <span className="text-gray-600 flex items-center">
-                Estimated Tax{" "}
-                <span className="ml-1 text-gray-400 cursor-pointer">ⓘ</span>
-              </span>
-              <span className="font-semibold text-gray-800">€-</span>
-            </div>
-
-            {/* Total */}
-            <div className="border-t pt-2 mt-2 flex justify-between">
-              <span className="font-bold text-gray-800">Total</span>
-              <span className="font-bold text-gray-800">€{total}</span>
-            </div>
-
-            {/* Checkout Button */}
-            <button className="mt-4 w-full px-4 py-2 bg-black text-white font-semibold rounded-md hover:bg-gray-900">
-              GO TO CHECKOUT
-            </button>
           </div>
         </div>
       )}

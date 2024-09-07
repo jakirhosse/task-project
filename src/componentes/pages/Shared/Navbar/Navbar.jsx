@@ -1,16 +1,23 @@
 import { Link } from "react-router-dom";
-import { FaBeer } from "react-icons/fa";
+import { FaShoppingCart } from "react-icons/fa";
 import iconImg from "../../../../assets/icon.png";
+import { useSelector } from "react-redux";
 const Navbar = () => {
+  const cartData = useSelector((state) => state?.cart?.items);
+  console.log(cartData);
   return (
-    <nav className="bg-white shadow-md">
+    <nav className="bg-white shadow-md sticky top-0 z-50">
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex justify-between">
           <div className="flex space-x-7">
-            <div>
+            <div className="flex items-center">
               {/* Website Logo */}
-              <Link to="/" className="flex mr-6">
-                <img src={iconImg} alt="img" className="h-20 w-12 rounded" />
+              <Link to="/" className="flex items-center gap-1">
+                <img
+                  src={iconImg}
+                  alt="img"
+                  className="h-12 w-12 rounded-full"
+                />
                 <h5 className=" text-xl">
                   Furni<span className="text-blue-600 text-xl">Flex</span>
                 </h5>
@@ -51,23 +58,26 @@ const Navbar = () => {
             </div>
           </div>
           {/* Secondary Navbar Items */}
-          <div className="mt-4 mx-24 mr-8">
-            <FaBeer></FaBeer>
-          </div>
-          <div className="hidden md:flex items-center space-x-3 ">
-            <Link
-              to="/login"
-              className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300"
-            >
-              Login
+          <div className="flex items-center gap-5">
+            <Link className="flex items-center gap-2" to="/checkOut">
+              <FaShoppingCart /> <sup>{cartData?.length}</sup>
             </Link>
-            <Link
-              to="/register"
-              className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300"
-            >
-              Register
-            </Link>
+            <div className="hidden md:flex items-center space-x-3">
+              <Link
+                to="/login"
+                className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300"
+              >
+                Login
+              </Link>
+              <Link
+                to="/register"
+                className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300"
+              >
+                Register
+              </Link>
+            </div>
           </div>
+
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center">
             <button className="outline-none mobile-menu-button">
