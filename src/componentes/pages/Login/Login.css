@@ -1,0 +1,10 @@
+.singup_bg{
+
+        background-image: url("../../../../src/assets/register.png");
+        background-position: start start;
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 40%;
+        height: 500px;
+
+}
