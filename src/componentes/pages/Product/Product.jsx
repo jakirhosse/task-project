@@ -45,7 +45,6 @@ const Product = () => {
             </div>
             <p className="text-gray-500 pb-6">{product.description}</p>
             <Link
-              to="/checkOut"
               className="mt-2 ml-20 bg-black py-2 px-3 text-white rounded"
               onClick={() => dispatch(addToCart(product))}
             >
