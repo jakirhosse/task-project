@@ -53,7 +53,7 @@ const Product = () => {
           </div>
         ))}
       </div>
-      <div className="pagination flex justify-center space-x-2 mt-4">
+      <div className="pagination flex justify-center space-x-2 mb-8">
         {[...Array(Math.ceil(products.length / productsPerPage)).keys()].map(
           (number) => (
             <button
